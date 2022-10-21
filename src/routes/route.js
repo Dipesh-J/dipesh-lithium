@@ -76,24 +76,120 @@ router.get("/films", function(req, res){
        //send all the films
       res.send(films) 
 })
+// ................................................................................................................................................
+// let playersData = {
+    //        "name": "gopal",
+    //        "dob": "1/2/1990",
+    //        "gender": "male",
+    //        "city": "banglore",
+    //        "sports": [
+        //            "soccer"
+    //        ]
+    //    }
+    //    for(i = 0;i<players.length;i++){
+        //    if (playersData.name == players[i].name){
+    //     console.log("name already exists")
+    //    }else{(players.push(playersData))}
+    // } 
+    // console.log(players) 
+    // res.send("two different things")
+
+
+
+
+
+
+
+
+
+
+
+router.get("/sol1", function (req, res) {
+    
+    let arr= [1,2,3,5,6,7]
+    let n = arr[arr.length-1]
+    let sumOfAll = (n*(n+1))/2
+    let initial = 0
+    let sumOfArr = arr.reduce((prev,curr)=>prev+curr,initial)
+    let missingNumber = sumOfAll - sumOfArr
+    res.send( { data: missingNumber } );
+});
+
+router.get("/sol2", function (req, res) {
+    
+    let arr= [33, 34, 35, 37, 38]
+    let n = arr.length+1
+    let sumOfNos = (n*(arr[0]+arr[arr.length-1]))/2
+ let initial = 0
+ let sumOfArr = arr.reduce((prev,curr)=>prev+curr,initial)
+ let missingNumber = sumOfNos - sumOfArr
+ 
+ 
+ res.send( { data: missingNumber } );
+});
+// ................................................................................................................................................
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//logic : sum of numbers is n(n+1)/2..so get sum of all numbers in array. now take sum of
+// numbers till last digit in the array
+
+
+//logic : sum of n consecutive numbers is [ n * (first + last) / 2 ]..so get sum of all
+// numbers in array. now take sum of n consecutive numbers.. n would be length+1 as 1 number is missing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.get("/films/:filmId", function(req, res){
     const films = [ {
         "id": 1,
         "name": "The Shining"
-       }, {
+    }, {
         "id": 2,
         "name": "Incendies"
-       }, {
+    }, {
         "id": 3,
         "name": "Rang de Basanti"
-       }, {
+    }, {
         "id": 4,
         "name": "Finding Nemo"
-       }]
-
+    }]
+    
        let filmId = req.params.filmId
-
+       
        //iterate all the films
        //search for a film whose id matches with the id recevied in request
        for(let i = 0; i < films.length; i++){
@@ -103,10 +199,113 @@ router.get("/films/:filmId", function(req, res){
                return res.send(film)
            }
        }
-
+       
        //if there is no match give an error response
        res.send("The film id doesn't match any movie")
+    })
+    
+
+    
+
+    
+    
+    
+    let persons= [
+    {
+        name: "PK",
+        age: 10,
+        votingStatus: false
+    },
+    {
+    name: "SK",
+    age: 20,
+    votingStatus: false
+},
+{
+    name: "AA",
+    age: 70,
+    votingStatus: false
+},
+{
+    name: "SC",
+    age: 5,
+    votingStatus: false
+ },
+ {
+     name: "HO",
+     age: 40,
+     votingStatus: false
+    }
+]
+
+
+
+router.post('/persons-1', function (req, res) {
+    let votingAge = req.query.age
+    let eligibleOnes =[]
+    
+    for(let i=0;i<persons.length;i++){
+        if( persons[i].age>=votingAge){
+            persons[i].votingStatus = true
+            eligibleOnes.push(persons[i])
+   }
+}
+res.send({ newList : eligibleOnes})
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+let players =
+   [
+       {
+           "name": "manish",
+           "dob": "1/1/1995",
+           "gender": "male",
+           "city": "jalandhar",
+           "sports": [
+               "swimming"
+           ]
+       },
+       {
+           "name": "gopal",
+           "dob": "1/09/1995",
+           "gender": "male",
+           "city": "delhi",
+           "sports": [
+               "soccer"
+           ],
+       },
+       {
+           "name": "lokesh",
+           "dob": "1/1/1990",
+           "gender": "male",
+           "city": "mumbai",
+           "sports": [
+               "soccer"
+           ],
+       },
+   ]
+router.post("/players", function(req,res){
+    
+    const body = req.body
+    const player = players.find(x => x.name === body.name)
+
+    if(player){
+        res.send({message:"player already exist"})
+    }else{
+        players.push(body)
+        res.send(players)
+    }
+})    
 module.exports = router;
-// adding this comment for no reason
+
