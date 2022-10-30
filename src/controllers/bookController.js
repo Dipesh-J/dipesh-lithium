@@ -15,34 +15,71 @@ const createAuthor= async function (req, res) {
 const checkAuthorId = async function (req,res){
     let data= req.body
     let savedData= await AuthorModel.create(data)
-    if (data.author_id) {
-        res.send({msg: savedData})
-    } else {
-        res.send("Entry not accepted. Please provide 'author_id:'")
-    }
-    
+    res.send({msg: savedData})
 }
-const checkBookId = async function (req,res){
-    let data= req.body
-    let savedData= await BookModel.create(data)
-    if (data.author_id) {
-        res.send({msg: savedData})
-    } else {
-        res.send("Entry not accepted. Please provide 'author_id:'")
-    }
-    
-}
+
 const listChetanBhagat = async function (req,res){
-    let list = await AuthorModel.find({name: "Chetan Bhagat"})
+    let author = await AuthorModel.find({author_name: "Chetan Bhagat"}).select("author_id")
+    let finalData = await BookModel.find({author_id: author[0].author_id})
+    res.send({msg: finalData})
 } 
 
+const authorTs = async function (req,res){
+    let savedData= await BookModel.findOneAndUpdate({name: "Two States"}, {$set: {price:100}},{new:true})
+    let authorOfTs = await AuthorModel.find({author_id: savedData.author_id}).select("author_name")
+        res.send({msg: savedData})
+    }
 
 module.exports.createBook= createBook
 module.exports.createAuthor= createAuthor
-module.exports.checkAuthorId= checkAuthorId
-module.exports.checkBookId= checkBookId
+module.exports.listChetanBhagat= listChetanBhagat
+module.exports.authorTs = authorTs
+// module.exports.
+
+// const { count } = require("console")
+// const BookModel= require("../models/bookModel")
+// const AuthorModel = require("../models/authorModel")
+
+// const createBook= async function (req, res) {
+//     let data= req.body
+//     let booksData= await BookModel.create(data)
+//     res.send({msg: booksData})
+// }
 
 
+// const createAuthor= async function (req, res) {
+//     let data= req.body
+//     let authorData= await AuthorModel.create(data)
+//     res.send({msg: authorData})
+// }
+
+
+// const bookByCb= async function(req, res){
+//     let booksOfCb = await AuthorModel.find({author_name: "Chetan Bhagat"}).select("author_id")
+//     let finalData = await BookModel.find({author_id:booksOfCb[0].author_id})
+//     res.send({msg: finalData})
+// }
+
+
+// const getAuthorOfTs = async function (req, res) {
+//     let authorOfTs = await BookModel.findOneAndUpdate({name:"Two states"},{$set: {price: 100}},{new:true})
+//     let finalData = await AuthorModel.find({author_id:authorOfTs.author_id}).select("author_name")
+//     let prices = authorOfTs.price
+//     res.send({msg: finalData,prices})
+// }
+
+
+// const getInclCost = async function (req, res) {
+//     let inclusiveCost = await BookModel.find( { price : { $gte: 50, $lte: 100} } ).select({ author_id :1})
+//     let allAuthorNames = await AuthorModel.find( { price : { $gte: 50, $lte: 100} } ).select({ author_id :1})
+//     res.send({msg:inclusiveCost,allAuthorNames })
+// }
+
+// module.exports.createBook= createBook
+// module.exports.createAuthor= createAuthor
+// module.exports.bookByCb= bookByCb
+// module.exports.getAuthorOfTs = getAuthorOfTs
+// module.exports.getInclCost = getInclCost
 
 
 

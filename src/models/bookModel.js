@@ -4,7 +4,7 @@ const booksSchema = new mongoose.Schema( {
     
     author_id:{
         type: Number,
-        required: true
+        required: true,
     },
     name: String,
     price: Number,
@@ -77,3 +77,4 @@ module.exports = mongoose.model('New_book', booksSchema) //new_books
 //     ratings:4.5,
 // } 
 // ]
+
