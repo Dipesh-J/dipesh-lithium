@@ -19,8 +19,17 @@ app.use (
         console.log ("inside GLOBAL MW");
         next();
   }
-  );
+);
 
+app.use (
+    function (req, res, next) {
+    let ip = req.ip
+    let url =req.url
+    let ts = Date()
+    console.log (ts,ip,url)
+    res.send({ts:ts ,ip:ip, route: url})
+     }
+)
 app.use('/', route);
 
 
