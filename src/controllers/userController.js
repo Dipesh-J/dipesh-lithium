@@ -13,6 +13,31 @@ const createUser = async function (abcd, xyz) {
   console.log(abcd.newAtribute);
   xyz.send({ msg: savedData });
 };
+//............................................assignment.............................
+
+const signUpUser = async function(req,res) {
+  let body = req.body
+  let user = await userModel.create(body)
+
+  res.send({msg: user})
+}
+
+const loginUsers = async function (req, res) {
+  let userName = req.body.emailId;
+  let password = req.body.password;
+
+  let findData = await userModel.findOne({ emailId: userName, password: password });
+  if (!findData)
+    return res.send({
+      status: false,
+      msg: "username or the password is not corerct",
+    });
+
+  }    
+
+
+
+
 
 const loginUser = async function (req, res) {
   let userName = req.body.emailId;
@@ -96,3 +121,4 @@ module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
+module.exports.signUpUser = signUpUser;
