@@ -1,5 +1,5 @@
 const { count } = require("console")
-const BookModel = require("../models/bookModel")
+const BookModel = require("../models/orderModel")
 
 const createBook= async function (req, res) {
     let data= req.body
@@ -37,7 +37,7 @@ const updateBooks = async function (req, res) {
 }
 
 const deleteBooks = async function (req, res) {
-    // let data = req.body 
+    let data = req.pa//body 
     let allBooks = await BookModel.updateMany(
         { authorName: "FI" }, //condition
         { $set: { isDeleted: true } }, //update in data

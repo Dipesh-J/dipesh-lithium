@@ -15,6 +15,7 @@ router.post("/createBook", commonMW.myMiddleware,BookController.createBook, func
 }  )
 
 router.post("/createUser", commonMW.myMiddleware, UserController.createUser)
+router.post("/createProduct",)
 
 router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
 
