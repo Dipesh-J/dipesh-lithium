@@ -55,7 +55,7 @@ NOTE: In some of the below apis a header validation is to be performed (create u
 **1** 
 - Write a POST api to create a product from the product details in request body. 
 **2**
-- Write a POST api to create a user that takes user details from the request body. If the header **isFreeAppUser** is not present terminate the request response cycle with an error message that the request is missing a mandatory header. The value of field isFreeAppUser is determined by **isFreeAppUser** request header.
+- Write a POST api to create a user that takes user details from the request body. If the header **isFreeAppUser** is not present terminate the request response cycle with an error message that the request is missing a mandatory header. The value of field isFreeAppUser is determined by **i sFreeAppUser** request header.
 **3**
 - Write a POST api for order purchase that takes a userId and a productId in request body. 
 If the header **isFreeAppUser** is not present terminate the request response cycle with an error message that the request is missing a mandatory header
