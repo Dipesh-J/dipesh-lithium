@@ -1,9 +1,9 @@
 # TOPIC: Middleware2
 
 ## Request
-- Access headers
-- Set headers
-- Set attributes
+- Access headers //req.headers
+- Set headers  // req.setHeaders
+- Set attributes // for making attributes of header
 
 ## Response 
 - Set headers
