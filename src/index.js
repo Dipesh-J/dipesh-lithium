@@ -4,30 +4,20 @@ const route = require('./routes/route.js');
 const { default: mongoose } = require('mongoose');
 const app = express();
 
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended:true}));
 
-
-mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzotr.mongodb.net/Pritesh8769811-DB?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://dipesh_015:1234@myfirstcluster.9x71xrh.mongodb.net/middleware-2", {
     useNewUrlParser: true
 })
-.then( () => console.log("MongoDb is connected"))
-.catch ( err => console.log(err) )
 
-// Move around the following block and see how its order impacts what gets called first
-app.use (
-    function (req, res, next) {
-        console.log ("inside GLOBAL MW");
-        next()
-        // What happens if we send a response instead of the next() call ?
-        //res.send({msg:"done"})
-  }
-);
+.then( () => console.log("MongoDb is now connected and ready to use, GoodLuck for the assignment!"))
+.catch ( err => console.log(err))
 
-app.use('/', route);
+app.use('/', route)
 
-app.listen(process.env.PORT || 3000, function () {
-    console.log('Express app running on port ' + (process.env.PORT || 3000))
+app.listen(process.env.PORT || 0007, function() {
+    console.log('Express app is running on your desired port ' + (process.env.PORT || 0007))
 });
-
 

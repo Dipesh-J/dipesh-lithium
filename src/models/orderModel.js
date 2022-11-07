@@ -4,10 +4,14 @@ const OrderSchema = new mongoose.Schema(
   {
     
     userid: {
-      type: String
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user',
+      required: true
     },
     productid: {
-      type: String
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'products',
+      required: true
     },
     isFreeAppUser:{
       type:Boolean,
@@ -15,7 +19,8 @@ const OrderSchema = new mongoose.Schema(
     },
     amount:{
       type:Number
-    }
+    },
+    date: Date
   },
   { timestamps: true }
 );
