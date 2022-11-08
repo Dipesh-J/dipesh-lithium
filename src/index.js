@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect("mongodb+srv://dipesh_015:1234@myfirstcluster.9x71xrh.mongodb.net/auth-1", {
     useNewUrlParser: true
 })
-.then( () => console.log("MongoDb is connected"))
+.then( () => console.log("Database is connected successfully, GoodLuck for the assignment!!!"))
 .catch ( err => console.log(err) )
 
 
