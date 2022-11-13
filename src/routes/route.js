@@ -12,10 +12,15 @@ router.get("/test-me", function (req, res) {
 router.get("/cowin/states", CowinController.getStates)
 router.get("/cowin/districtsInState/:stateId", CowinController.getDistricts)
 router.get("/cowin/getByPin", CowinController.getByPin)
-router.get("/cowin/getByDistrict", CowinController.getByDistrict)
-
 
 router.post("/cowin/getOtp", CowinController.getOtp)
+
+// Assignment Api's
+router.get("/cowin/getByDistrict", CowinController.getByDistrict)
+router.get("/getWeather", CowinController.liveWeather)
+
+router.post("/postMeme", CowinController.memeMaker)
+
 
 
 
